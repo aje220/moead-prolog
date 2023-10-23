@@ -2,8 +2,9 @@
 :- use_module(library(random)).
 :- use_module(library(pairs)).
 :- use_module(library(clpfd)).
-:-[lhs]
-:-[tchebicheff]
+:-[lhs].
+:-[tchebicheff].
+:-[utils].
 
 
 
@@ -78,7 +79,7 @@ all_closest_neighbours_of([],[]).
 all_closest_neighbours_of([Sub|Rest], [New|NewRest]):-
     weight_vectors(Vectors),
     t_closest_vectors(Sub, Vectors, New),
-    print(New),
+    % print(New),
     all_closest_neighbours_of(Rest, NewRest).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -264,9 +265,9 @@ moead_iterate_n_times(Ideal, Neighbourhoods, Init, YInit, PopSize, 0, EPAcc, Fin
     FinSol = Init, % update with the final population of solutions
     FinFE = YInit. % update with the final fitness values
 moead_iterate_n_times(Ideal, Neighbourhoods, Init, YInit, PopSize, Gens, EPAcc, FinEP, FinSol, FinFE) :-
-    nl,
-    print(generation),
-    print(Gens),nl,
+    % nl,
+    % print(generation),
+    % print(Gens),nl,
     Gens > 0,
     moead_iterate(Ideal, Neighbourhoods, Init, YInit, PopSize, EPAcc, NewEP, FinalSol, FinalFE, NewIdeal),
     Gens1 is Gens - 1,

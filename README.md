@@ -1,11 +1,12 @@
 # moead-prolog
 MOEA/D, multi-objective evolutionary algorithm implemented in prolog.
 
-MOEA/D was presented by Zhang et al in 2007 
+MOEA/D was presented by Zhang et al in 2007. The citation can be seen at the bottom of this document.
+
 
 This repo contains an implementation of the MOEA/D evolutionary algorithm implemented in prolog. You can use this repo to solve multi-objective problems (MOP).
 
-The power of prolog comes from it's declarative nature. This allows the user to define an MOP and solve with little lines of code.
+The power of prolog comes from it's declarative nature. This allows the user to define an MOP and solve said problem with a few lines of code.
 
 ### Example
 
@@ -43,11 +44,14 @@ More testing required.
 ### Weight vectors
 As defined in the paper, the weight vectors must be defined before optimisation, they are used as an input. This is to allow greater control over the optimisation process. 
 
-If you do not have a method of defining your own weight vectors, I have provided a predicate defining the relation between a number and a nested list of uniform weight vectors. This can be used to generate weight vectors via:
+If you do not have a method of defining your own weight vectors, a method is provided. A predicate defining the relation between a number (number of weight vectors) and a nested list of uniform weight vectors is found in ```utils.pl```. This can be used to generate weight vectors via:
 ```prolog
 ?- weight_vectors_of_size(5,V).
 V = [[0, 1], [1r4, 3r4], [1r2, 1r2], [3r4, 1r4], [1, 0]] 
 ```
 
 ### MUST READ
-The number of weight vectors must be the same as the population size, otherwise the optimisation fails. This is a requirement of the algorithm definition.
+The number of weight vectors **must be the same** as the population size, otherwise the optimisation fails. This is a requirement of the algorithm definition.
+
+### Citations
+Q. Zhang and H. Li, "MOEA/D: A Multiobjective Evolutionary Algorithm Based on Decomposition," in IEEE Transactions on Evolutionary Computation, vol. 11, no. 6, pp. 712-731, Dec. 2007, doi: 10.1109/TEVC.2007.892759.
