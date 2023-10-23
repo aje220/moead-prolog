@@ -43,7 +43,7 @@ initial_samples(Init):-
     n_obj(K),
     population_size(N),
     run_perm_of_n_times(N, K, UniHC), % this gives the non-scaled LHS
-    varaiable_ranges(Ranges),
+    variable_ranges(Ranges),
     print(Ranges),
     scaled_nested_of(UniHC, Ranges, [Xs,Ys]),
     zip(Xs, Ys, Init). % scaled to specified range
