@@ -37,7 +37,7 @@ EP = 'Pareto front approximation'
 X  = 'Final population'
 Y  = 'Function values of the final population'
 ```
-```EP``` can produce pareto fronts such as:
+```EP``` can be plotted to produce:
  ![PF](docs/media/ParetoApprox.png "Pareto Approximation")
 
 More testing required.
