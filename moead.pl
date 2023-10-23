@@ -2,6 +2,8 @@
 :- use_module(library(random)).
 :- use_module(library(pairs)).
 :- use_module(library(clpfd)).
+:-[lhs]
+:-[tchebicheff]
 
 
 

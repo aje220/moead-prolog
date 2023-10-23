@@ -5,7 +5,7 @@ MOEA/D was presented by Zhang et al in 2007
 
 This repo contains an implementation of the MOEA/D evolutionary algorithm implemented in prolog. You can use this repo to solve multi-objective problems (MOP).
 
-The power of prolog comes from it's declarative nature. This allows the user to define an MOP a few lines of code.
+The power of prolog comes from it's declarative nature. This allows the user to define an MOP and solve with little lines of code.
 
 ### Example
 
@@ -30,12 +30,24 @@ neighbourhood_size(2).
 ```
 You can then run the algorithm to solve via:
 ```prolog
-?- moead(10, EP, X, Y).
+?- moead(230, EP, X, Y).
+% 230 being the number of generations/the termination condition.
 EP = 'Pareto front approximation'
 X  = 'Final population'
 Y  = 'Function values of the final population'
 ```
+```EP``` can produce pareto fronts such as:
+ ![PF](docs/media/ParetoApprox.png "Pareto Approximation")
 
-As defined in the 
+More testing required.
+### Weight vectors
+As defined in the paper, the weight vectors must be defined before optimisation, they are used as an input. This is to allow greater control over the optimisation process. 
 
-if you are reading this, may peace and joy bless you
+If you do not have a method of defining your own weight vectors, I have provided a predicate defining the relation between a number and a nested list of uniform weight vectors. This can be used to generate weight vectors via:
+```prolog
+?- weight_vectors_of_size(5,V).
+V = [[0, 1], [1r4, 3r4], [1r2, 1r2], [3r4, 1r4], [1, 0]] 
+```
+
+### MUST READ
+The number of weight vectors must be the same as the population size, otherwise the optimisation fails. This is a requirement of the algorithm definition.
