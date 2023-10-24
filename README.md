@@ -10,7 +10,7 @@ The power of prolog comes from it's declarative nature. This allows the user to 
 ### Example
 Objectives are defined as predicates, 
 ```prolog
-objective(+objective number, +decision variables, -objective evaluation):- 
+objective(++objective number, +decision variables, -objective evaluation):- 
     'your definition here'.
 ```
 
@@ -61,7 +61,7 @@ V = [[0, 1], [1r4, 3r4], [1r2, 1r2], [3r4, 1r4], [1, 0]]
 ```
 more formally:
 ```prolog
-weight_vectors_of_size()
+weight_vectors_of_size(++num_of_weight_vectors, -weight_vectors).
 ```
 
 ### MUST READ
