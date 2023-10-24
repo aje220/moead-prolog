@@ -1,17 +1,16 @@
 # moead-prolog
-MOEA/D, multi-objective evolutionary algorithm implemented in prolog.
-
 MOEA/D was presented by Zhang et al in 2007. The citation can be seen at the bottom of this document.
 
+This repo contains an implementation of the MOEA/D evolutionary algorithm implemented in prolog. You can use this repo to solve multi-objective problems (MOP). 
 
-This repo contains an implementation of the MOEA/D evolutionary algorithm implemented in prolog. You can use this repo to solve multi-objective problems (MOP).
+As it stands, the workflow is set up to solve bi-objective minimisation problems.
 
 The power of prolog comes from it's declarative nature. This allows the user to define an MOP and solve said problem with a few lines of code.
 
 ### Example
 Objectives are defined as predicates, 
 ```prolog
-objctive(+objective number, +decision variables, -objective evaluation):- 
+objective(+objective number, +decision variables, -objective evaluation):- 
     'your definition here'.
 ```
 
@@ -48,16 +47,21 @@ more fomally:
 moead(+N_generations, -PF_approx, -Population_of_solutions, -Objective_values).
 ```
 ```EP``` can be plotted to produce:
+
  ![PF](docs/media/ParetoApprox.png "Pareto Approximation")
 
 More testing required.
 ### Weight vectors
-As defined in the paper, the weight vectors must be defined before optimisation, they are used as an input. This is to allow greater control over the optimisation process. 
+As explained in the paper, the weight vectors must be defined before optimisation, they are used as an input. This is to allow greater control over the optimisation process. 
 
 If you do not have a method of defining your own weight vectors, a method is provided. A predicate defining the relation between a number (number of weight vectors) and a nested list of uniform weight vectors is found in ```utils.pl```. This can be used to generate weight vectors via:
 ```prolog
 ?- weight_vectors_of_size(5,V).
 V = [[0, 1], [1r4, 3r4], [1r2, 1r2], [3r4, 1r4], [1, 0]] 
+```
+more formally:
+```prolog
+weight_vectors_of_size()
 ```
 
 ### MUST READ
