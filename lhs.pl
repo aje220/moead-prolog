@@ -1,4 +1,8 @@
-% Predicate to run perm_of/2 n times and create a nested list
+% Predicate to run perm_of/2 n times and create a nested list.
+% By finding a permutation of a range of integers then zipping them 
+% together, we can create a list of coordinates that maintains the 
+% latin hypercube "non-collapsibility" property.
+% run_perm_of_n_times(++int, ++int, -list).
 run_perm_of_n_times(N, Dims, Results) :-
     run_perm_of_n_times(N, Dims, [], Results).
 
@@ -11,7 +15,6 @@ run_perm_of_n_times(N, Dims, Acc, Results) :-
     perm_of(N, Result),
     divide_by_of(N, Result, Unires),    % Call your perm_of/2 predicate
     Dims1 is Dims - 1,
-    % run_perm_of_n_times(N1, K, [Unires | Acc], Results).
     run_perm_of_n_times(N, Dims1, [Unires | Acc], Results).
 
 perm_of(N, Samples):-
@@ -19,7 +22,9 @@ perm_of(N, Samples):-
     random_permutation(X, Samples). % now do it n times
 
 
-% Scale inputs from range 0,1 to any given range.
+% Scale a list of numbers from range [0,1] to any given range.
+% range given my Min and Max.
+% scaled_of(++list, ++float, ++float, -list).
 scaled_of([], _, _, []).
 scaled_of( [X|Xs], Min, Max, [Y|Ys] ):-
     % print(Y),
@@ -28,7 +33,8 @@ scaled_of( [X|Xs], Min, Max, [Y|Ys] ):-
 
     scaled_of(Xs, Min, Max, Ys).
 
-% 
+% Driver predicate to iterate through the initial samples and scale them.
+% scaled_nested_of(++list, ++list, -list).
 scaled_nested_of([],[],[]).
 scaled_nested_of([Sub|Rest], [[Min,Max]|RangeRest], [SubNew|RestNew]):-
     % print(Sub),
@@ -39,6 +45,7 @@ scaled_nested_of([Sub|Rest], [[Min,Max]|RangeRest], [SubNew|RestNew]):-
 
 % this assumes 2 dimensions as zip/3 assumes two dimensions, zip/3.
 % zip/3 must be changed to accomadate samples with more than 2 dims.
+% initial_samples(-list).
 initial_samples(Init):-
     n_obj(K),
     population_size(N),
